@@ -4,7 +4,19 @@
     <script src='https://libs.cdnjs.net/video.js/6.3.3/video.min.js'></script>
   </head>
   <body>
-    <video class='video-js vjs-default-skin vjs-fluid' controls width='500' height='300' autoplay='autoplay' data-setup='{}'>
-    <source src='https://vodcdn.alicdn.com/oss/taobao-ugc/e6fb60eae8594f9e812233489bfa2732/1476578718/video.mp4' type='video/mp4'></video>
+    <video id='myVideo' class='video-js vjs-default-skin vjs-fluid' controls width='500' height='300' autoplay='autoplay' data-setup='{}'>
   </body>
+  <script>
+  function GetPara(name) {
+   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+   var r = window.location.search.substr(1).match(reg);
+   if (r!=null) return unescape(r[2]); return null;
+}
+    videojs('myVideo', {
+  sources: [{
+    src: GetPara('url'),
+    type: 'application/x-mpegURL'
+  }]
+});
+  </script>
 </html>
