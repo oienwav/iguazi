@@ -11,15 +11,15 @@
     <video id='myVideo' class='video-js vjs-default-skin vjs-fluid' controls width='500' height='300'></video>
     <div id="dvList"></div>
     <script>
+        var player;
   function GetPara(name) {
    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
    var r = window.location.search.substr(1).match(reg);
    if (r!=null) return unescape(r[2]); return null;
   }
   $(document).ready(function () {
-      var player=videojs('myVideo');
+      player=videojs('myVideo');
       $.getJSON("https://www.iguazi.wang/inc/apiweixin.php?id=" + GetPara("id") + "&callback=?", function (data) {
-          console.log(data);
           if(data.d_id>0)
              {
                  if(data.d_playfrom.indexOf("yjm3u8") >= 0)
