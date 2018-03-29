@@ -16,7 +16,7 @@
    if (r!=null) return unescape(r[2]); return null;
   }
   $(document).ready(function () {
-      $.getJSON("http://www.iguazi.wang/inc/apiweixin.php?id=" + GetPara("id") + "&callback=?", function (data) {
+      $.getJSON("https://www.iguazi.wang/inc/apiweixin.php?id=" + GetPara("id") + "&callback=?", function (data) {
           alert(data);
       });
 
