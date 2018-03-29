@@ -9,6 +9,7 @@
 <body>
     <div style='font-size:30px;'>微信端建设中。。。现仅做测试用，敬请期待！</div>
     <video id='myVideo' class='video-js vjs-default-skin vjs-fluid' controls width='500' height='300' autoplay='autoplay' data-setup='{}'></video>
+    <div id="dvList"></div>
     <script>
   function GetPara(name) {
    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
@@ -17,17 +18,43 @@
   }
   $(document).ready(function () {
       $.getJSON("https://www.iguazi.wang/inc/apiweixin.php?id=" + GetPara("id") + "&callback=?", function (data) {
-          alert(data);
+          console.log(data);
+          if(data.d_id>0)
+             {
+                 if(data.d_playfrom.indexOf("yjm3u8") >= 0)
+                    {
+                        var groupIndex=0;
+                    var arrPlayFrom = data.d_playfrom.split("$$$");
+                        for(var i=0;i<arrPlayFrom.length;i++)
+                            {
+                        if(arrPlayFrom[i]=="yjm3u8")
+                           {groupIndex=i;}
+                        }
+                        var arrUrlGroup = data.d_playurl.split("$$$");
+                        var arrUrl = arrUrlGroup[groupIndex].split("#");
+                        for(var i=0;i<arrUrl.length;i++)
+                            {
+                                if(arrUrl[i])
+                                   {
+                                       var item = arrUrl[i].split("$");
+                                   $("#dvList").append("<div onclick=\"PlayUrl('"+item[1]+"')\">"+item[0]+"</div>");
+                                   }
+                            }
+                    }
+                 else{
+                 alert("不支持的播放源，请用浏览器打开本站观看");
+                 }
+             }
       });
-
+  });
+      function PlayUrl(url){
       videojs('myVideo', {
           sources: [{
               src: GetPara('url'),
               type: 'application/x-mpegURL'
           }]
       });
-  });
-
+      }
     </script>
 </body>
 </html>
