@@ -20,7 +20,19 @@
    if (r!=null) return unescape(r[2]); return null;
   }
   $(document).ready(function () {
-      player=videojs('myVideo');
+      player=videojs('myVideo',{children : {
+            bigPlayButton : false,
+            textTrackDisplay : false,
+            //posterImage: false,
+            errorDisplay : false,
+            controlBar : {
+                captionsButton : false,
+                chaptersButton: false,
+                subtitlesButton:false,
+                liveDisplay:false,
+                playbackRateMenuButton:false
+            }
+        }});
       $.getJSON("https://www.iguazi.wang/inc/apiweixin.php?id=" + GetPara("id") + "&callback=?", function (data) {
           if(data.d_id>0)
              {
