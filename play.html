@@ -8,7 +8,7 @@
 </head>
 <body>
     <div style='font-size:30px;'>微信端建设中。。。现仅做测试用，敬请期待！</div>
-    <video id='myVideo' class='video-js vjs-default-skin vjs-fluid' controls width='500' height='300' autoplay='autoplay' data-setup='{}'></video>
+    <video id='myVideo' class='video-js vjs-default-skin vjs-fluid' controls width='500' height='300'></video>
     <div id="dvList"></div>
     <script>
   function GetPara(name) {
@@ -17,6 +17,7 @@
    if (r!=null) return unescape(r[2]); return null;
   }
   $(document).ready(function () {
+      var player=videojs('myVideo');
       $.getJSON("https://www.iguazi.wang/inc/apiweixin.php?id=" + GetPara("id") + "&callback=?", function (data) {
           console.log(data);
           if(data.d_id>0)
@@ -48,12 +49,9 @@
       });
   });
       function PlayUrl(url){
-      videojs('myVideo', {
-          sources: [{
-              src: GetPara('url'),
-              type: 'application/x-mpegURL'
-          }]
-      });
+player.src({src:url,
+     type: "application/x-mpegURL"});
+player.play();
       }
     </script>
 </body>
