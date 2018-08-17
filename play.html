@@ -53,7 +53,7 @@
                                 if(arrUrl[i])
                                    {
                                        var item = arrUrl[i].split("$");
-                                   $("#dvList").append("<div class='item' onclick=\"PlayUrl(this,'"+item[1]+"')\">"+item[0]+"</div>");
+                                   $("#dvList").append("<div class='item' onclick=\"PlayUrl(this,'"+item[1].replace("http://","https://")+"')\">"+item[0]+"</div>");
                                    }
                             }
                     }
