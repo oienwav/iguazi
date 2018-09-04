@@ -233,11 +233,12 @@
         });
         function Search()
         {
-            if ($.trim($("#txtSearch").val()) == "") {
+            var wd = $.trim($("#txtSearch").val());
+            if (wd == "") {
                 alert("请输入搜索词");
                 return;
             }
-            window.location.href = "";
+            window.location.href = "vodsearch.html?wd="+encodeURIComponent(wd);
         }
     </script>
     <!--<script>MAC.Hits("vod","17787")</script>-->
