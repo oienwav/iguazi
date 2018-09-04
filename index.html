@@ -1,0 +1,200 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />
+    <link rel="stylesheet" href="https://libs.cdnjs.net/Swiper/3.4.2/css/swiper.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <style>
+        div {
+            box-sizing: border-box;
+        }
+        .videopic {
+            position: relative;
+            display: block;
+            padding-top: 150%;
+        }
+
+        .hy-video-slide .title {
+            font-size: 0.25rem;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            padding: 30px 0 20px;
+            text-align: center;
+            color: #fff;
+            background-image: linear-gradient(transparent, rgba(0, 0, 0, .5));
+            background-repeat: no-repeat;
+        }
+        .swiper-pagination-bullet {
+    width: 0.3rem;
+    height: 0.07rem;
+    margin: 0 0.02rem;
+    border-radius: 0;
+    background: #fff;
+}
+     .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: #09bb07;
+}
+     .score {
+    background-color: #09bb07;
+    color: #fff;
+    white-space: nowrap;
+}
+     .videopic .score {
+    font-size: 0.2rem;
+    position: absolute;
+    top: 0.1rem;
+    left: -0.09rem;
+    padding: 0 0.1rem;
+    text-align: right;
+}
+     .videopic .score:before {
+    border-top: 0.08rem solid #09bb07;
+    border-left: 0.09rem solid transparent;
+}
+
+.videopic .score:before {
+    position: absolute;
+    bottom: -0.08rem;
+    left: 0;
+    content: '';
+}
+.text-overflow {
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+    </style>
+    <script src='https://libs.cdnjs.net/jquery/3.2.0/jquery.min.js'></script>
+    <script src='https://libs.cdnjs.net/Swiper/3.4.2/js/swiper.jquery.min.js'></script>
+    <script>
+    (function (n, e) {
+    var t = n.documentElement, i = "orientationchange" in window ? "orientationchange" : "resize", d = function () {
+    var n = t.clientWidth;
+    n && (t.style.fontSize = n / 7.5 + "px")
+    };
+    n.addEventListener && (e.addEventListener(i, d, !1), n.addEventListener("DOMContentLoaded", d, !1))
+    })(document, window);
+        </script>
+</head>
+<body style="color:#666;margin:0 auto;background:#f2f2f2;font-weight:300;font-size:0;">
+    <div style="background-color:white;padding-bottom:0.1rem;">
+        <div style="text-align:center;"><img src="https://iguazi.wang/template/n493/i/img/logo_min.png" style="width:2.5rem;"></div>
+        <div style="position: relative;padding:0 0.3rem;">
+            <input style="border:1px solid #e2e2e2;background-color:#fff;height:0.7rem;width:6.9rem;padding:0.06rem 0.12rem;font-size:0.28rem;line-height:0.28rem;border-radius:0.1rem;" placeholder="输入影片关键词..." type="text">
+            <a style="top:0.22rem;right:0.5rem;line-height:0.35rem;position:absolute;display: block;width:0.35rem;text-align:center;color:#999;" href="javascript:" class="btns" title="搜索" onclick="$('#formsearch').submit();">
+                <i style="font-size:0.28rem;" class="fas fa-search"></i>
+            </a>
+        </div>
+    </div>
+    <div style="margin-top:0.1rem;padding:0.1rem;background-color:white;">
+        <div class="swiper-container hy-slide">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="hy-video-slide"><a class="videopic" href="#" title="haha" style="padding-top:60%; background: url(http://baiyug.cn/img.php?url=http://ykimg.alicdn.com/product/image/2018-08-07/9a881b32cc07df35570d2bd086152467.jpg)  no-repeat; background-position:50% 50%; background-size: cover;"><span class="title">甜蜜暴击</span></a></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="hy-video-slide"><a class="videopic" href="#" title="haha" style="padding-top:60%; background: url(http://baiyug.cn/img.php?url=http://ykimg.alicdn.com/product/image/2018-08-07/9a881b32cc07df35570d2bd086152467.jpg)  no-repeat; background-position:50% 50%; background-size: cover;"><span class="title">甜蜜暴击</span></a></div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+   <div style="margin-top:0.1rem;padding:0.1rem;background-color:white;">
+       <div style="padding:0.1rem;">
+           <i style="color: #09bb07;font-size:0.42rem;float:left;" class="fas fa-film"></i><div style="float:left;font-size:0.29rem;margin-left:0.1rem;">电影</div><i style="float:right;font-size:0.25rem;margin-top:0.08rem;" class="fas fa-chevron-right"></i><div style="float:right;font-size:0.23rem;margin-right:0.1rem;margin-top:0.05rem;">更多</div>
+           <div style="clear:both;"></div>
+       </div>
+       <div>
+       <div style="padding:0.1rem;float:left;width:2.43rem;">
+           <a class="videopic lazy" href="#" title="一出好戏" style="position:relative;padding-top:150%;background: url(&quot;http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2529571873.jpg&quot;) 50% 50% / cover no-repeat; display: block;">
+           <span class="score">HD1280高清中字首发</span>
+           </a>
+           <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
+               爱到最后/相爱到最后
+           </div>
+       </div>
+       <div style="padding:0.1rem;float:left;width:2.43rem;">
+           <a class="videopic lazy" href="#" title="一出好戏" style="position:relative;padding-top:150%;background: url(http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2524173784.jpg) 50% 50% / cover no-repeat; display: block;">
+               <span class="score">HD1280高清</span>
+           </a>
+           <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
+               一出好戏
+           </div>
+       </div>
+           <div style="padding:0.1rem;float:left;width:2.43rem;">
+               <a class="videopic lazy" href="#" title="巨齿鲨" style="position:relative;padding-top:150%;background: url(http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2530572643.jpg) 50% 50% / cover no-repeat; display: block;">
+                   <span class="score">HD1280高清</span>
+               </a>
+               <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
+                   巨齿鲨
+               </div>
+           </div>
+           <div style="padding:0.1rem;float:left;width:2.43rem;">
+               <a class="videopic lazy" href="#" title="超时空同居" style="position:relative;padding-top:150%;background: url(http://img1.doubanio.com/view/photo/s_ratio_poster/public/p2520331478.jpg) 50% 50% / cover no-repeat; display: block;">
+                   <span class="score">HD1280高清</span>
+               </a>
+               <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
+                   超时空同居
+               </div>
+           </div>
+       <div style="clear:both;"></div>
+           </div>
+   </div>
+    <div style="margin-top:0.1rem;padding:0.1rem;background-color:white;">
+        <div style="padding:0.1rem;">
+            <i style="color: #09bb07;font-size:0.34rem;float:left;margin-top:0.03rem;" class="fas fa-tv"></i><div style="float:left;font-size:0.29rem;margin-left:0.1rem;">连续剧</div><i style="float:right;font-size:0.25rem;margin-top:0.07rem;" class="fas fa-chevron-right"></i><div style="float:right;font-size:0.23rem;margin-right:0.1rem;margin-top:0.04rem;">更多</div>
+            <div style="clear:both;"></div>
+        </div>
+        <div>
+            <div style="padding:0.1rem;float:left;width:2.43rem;">
+                <a class="videopic lazy" href="#" title="一出好戏" style="position:relative;padding-top:150%;background: url(&quot;http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2529571873.jpg&quot;) 50% 50% / cover no-repeat; display: block;">
+                    <span class="score">HD1280高清中字首发</span>
+                </a>
+                <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
+                    爱到最后/相爱到最后
+                </div>
+            </div>
+            <div style="padding:0.1rem;float:left;width:2.43rem;">
+                <a class="videopic lazy" href="#" title="一出好戏" style="position:relative;padding-top:150%;background: url(http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2524173784.jpg) 50% 50% / cover no-repeat; display: block;">
+                    <span class="score">HD1280高清</span>
+                </a>
+                <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
+                    一出好戏
+                </div>
+            </div>
+            <div style="padding:0.1rem;float:left;width:2.43rem;">
+                <a class="videopic lazy" href="#" title="巨齿鲨" style="position:relative;padding-top:150%;background: url(http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2530572643.jpg) 50% 50% / cover no-repeat; display: block;">
+                    <span class="score">HD1280高清</span>
+                </a>
+                <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
+                    巨齿鲨
+                </div>
+            </div>
+            <div style="padding:0.1rem;float:left;width:2.43rem;">
+                <a class="videopic lazy" href="#" title="超时空同居" style="position:relative;padding-top:150%;background: url(http://img1.doubanio.com/view/photo/s_ratio_poster/public/p2520331478.jpg) 50% 50% / cover no-repeat; display: block;">
+                    <span class="score">HD1280高清</span>
+                </a>
+                <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
+                    超时空同居
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+    <script>
+        var swiper = new Swiper('.hy-slide', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            autoplay: 3000,
+            loop: true,
+            autoHeight:true
+        });
+    </script>
+</body>
+</html>
