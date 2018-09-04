@@ -117,7 +117,7 @@
         <span></span>
     </div>
     <script type="text/html" id="tmp">
-        <div style="margin-top:0.02rem;padding:0.2rem;background-color:white;">
+        <div onclick="window.location.href='voddetail.html?id={{d_id}}';" style="margin-top:0.02rem;padding:0.2rem;background-color:white;">
             <dl>
                 <dt style="width:2.43rem;float:left;">
                     <a class="videopic lazy" href="#" style="background:url({{d_pic}}) 50% 50% / cover no-repeat; display: block;"></a>
@@ -153,6 +153,7 @@
                     var tp = $("#tmp").html();
                     for (var i = 0; i < data.length; i++) {
                         var tmp = tp.replace(/{{d_name}}/g, data[i].d_name);
+                        tmp = tmp.replace(/{{d_id}}/g, data[i].d_id);
                         tmp = tmp.replace(/{{d_pic}}/g, data[i].d_pic);
                         tmp = tmp.replace(/{{d_score}}/g, data[i].d_score);
                         tmp = tmp.replace(/{{d_score_p}}/g, data[i].d_score * 10);
