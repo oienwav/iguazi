@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />
@@ -68,6 +68,48 @@
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
 }
+.loading {
+        width: 0.8rem;
+        height: 0.4rem;
+        margin: 0 auto;
+        font-size:0.2rem;
+        display:none;
+        position:absolute;
+        top:2rem;
+        left:50%;
+    }
+        .loading span {
+            display: inline-block;
+            width: 0.1rem;
+            height: 100%;
+            border-radius: 0.04rem;
+            background: lightgreen;
+            -webkit-animation: load 1s ease infinite;
+        }
+    @-webkit-keyframes load {
+        0%,100% {
+            height: 0.4rem;
+            background: lightgreen;
+        }
+
+        50% {
+            height: 0.7rem;
+            margin: -0.15rem 0;
+            background: lightblue;
+        }
+    }
+    .loading span:nth-child(2) {
+        -webkit-animation-delay: 0.2s;
+    }
+    .loading span:nth-child(3) {
+        -webkit-animation-delay: 0.4s;
+    }
+    .loading span:nth-child(4) {
+        -webkit-animation-delay: 0.6s;
+    }
+    .loading span:nth-child(5) {
+        -webkit-animation-delay: 0.8s;
+    }
     </style>
     <script src='https://libs.cdnjs.net/jquery/3.2.0/jquery.min.js'></script>
     <script src='https://libs.cdnjs.net/Swiper/3.4.2/js/swiper.jquery.min.js'></script>
@@ -85,21 +127,23 @@
     <div style="background-color:white;padding-bottom:0.1rem;">
         <div style="text-align:center;"><img src="https://iguazi.wang/template/n493/i/img/logo_min.png" style="width:2.5rem;"></div>
         <div style="position: relative;padding:0 0.3rem;">
-            <input style="border:1px solid #e2e2e2;background-color:#fff;height:0.7rem;width:6.9rem;padding:0.06rem 0.12rem;font-size:0.28rem;line-height:0.28rem;border-radius:0.1rem;" placeholder="输入影片关键词..." type="text">
-            <a style="top:0.22rem;right:0.5rem;line-height:0.35rem;position:absolute;display: block;width:0.35rem;text-align:center;color:#999;" href="javascript:" class="btns" title="搜索" onclick="$('#formsearch').submit();">
+            <input id="txtSearch" style="border:1px solid #e2e2e2;background-color:#fff;height:0.7rem;width:6.9rem;padding:0.06rem 0.12rem;font-size:0.28rem;line-height:0.28rem;border-radius:0.1rem;" placeholder="输入影片关键词..." type="text">
+            <a style="top:0.22rem;right:0.5rem;line-height:0.35rem;position:absolute;display: block;width:0.35rem;text-align:center;color:#999;" href="javascript:" class="btns" title="搜索" onclick="Search();">
                 <i style="font-size:0.28rem;" class="fas fa-search"></i>
             </a>
         </div>
     </div>
+    <div class="loading">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div id="dvcontent" style="display:none;">
     <div style="margin-top:0.1rem;padding:0.1rem;background-color:white;">
         <div class="swiper-container hy-slide">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="hy-video-slide"><a class="videopic" href="#" title="haha" style="padding-top:60%; background: url(http://baiyug.cn/img.php?url=http://ykimg.alicdn.com/product/image/2018-08-07/9a881b32cc07df35570d2bd086152467.jpg)  no-repeat; background-position:50% 50%; background-size: cover;"><span class="title">甜蜜暴击</span></a></div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="hy-video-slide"><a class="videopic" href="#" title="haha" style="padding-top:60%; background: url(http://baiyug.cn/img.php?url=http://ykimg.alicdn.com/product/image/2018-08-07/9a881b32cc07df35570d2bd086152467.jpg)  no-repeat; background-position:50% 50%; background-size: cover;"><span class="title">甜蜜暴击</span></a></div>
-                </div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -107,94 +151,73 @@
 
    <div style="margin-top:0.1rem;padding:0.1rem;background-color:white;">
        <div style="padding:0.1rem;">
-           <i style="color: #09bb07;font-size:0.42rem;float:left;" class="fas fa-film"></i><div style="float:left;font-size:0.29rem;margin-left:0.1rem;">电影</div><i style="float:right;font-size:0.25rem;margin-top:0.08rem;" class="fas fa-chevron-right"></i><div style="float:right;font-size:0.23rem;margin-right:0.1rem;margin-top:0.05rem;">更多</div>
+           <i style="color: #09bb07;font-size:0.42rem;float:left;" class="fas fa-film"></i><div style="float:left;font-size:0.29rem;margin-left:0.1rem;">电影</div>
+<!--           <i style="float:right;font-size:0.25rem;margin-top:0.08rem;" class="fas fa-chevron-right"></i><div style="float:right;font-size:0.23rem;margin-right:0.1rem;margin-top:0.05rem;">更多</div>-->
            <div style="clear:both;"></div>
        </div>
-       <div>
-       <div style="padding:0.1rem;float:left;width:2.43rem;">
-           <a class="videopic lazy" href="#" title="一出好戏" style="position:relative;padding-top:150%;background: url(&quot;http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2529571873.jpg&quot;) 50% 50% / cover no-repeat; display: block;">
-           <span class="score">HD1280高清中字首发</span>
-           </a>
-           <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
-               爱到最后/相爱到最后
-           </div>
-       </div>
-       <div style="padding:0.1rem;float:left;width:2.43rem;">
-           <a class="videopic lazy" href="#" title="一出好戏" style="position:relative;padding-top:150%;background: url(http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2524173784.jpg) 50% 50% / cover no-repeat; display: block;">
-               <span class="score">HD1280高清</span>
-           </a>
-           <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
-               一出好戏
-           </div>
-       </div>
-           <div style="padding:0.1rem;float:left;width:2.43rem;">
-               <a class="videopic lazy" href="#" title="巨齿鲨" style="position:relative;padding-top:150%;background: url(http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2530572643.jpg) 50% 50% / cover no-repeat; display: block;">
-                   <span class="score">HD1280高清</span>
-               </a>
-               <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
-                   巨齿鲨
-               </div>
-           </div>
-           <div style="padding:0.1rem;float:left;width:2.43rem;">
-               <a class="videopic lazy" href="#" title="超时空同居" style="position:relative;padding-top:150%;background: url(http://img1.doubanio.com/view/photo/s_ratio_poster/public/p2520331478.jpg) 50% 50% / cover no-repeat; display: block;">
-                   <span class="score">HD1280高清</span>
-               </a>
-               <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
-                   超时空同居
-               </div>
-           </div>
-       <div style="clear:both;"></div>
+       <div id="dvMovie">
            </div>
    </div>
     <div style="margin-top:0.1rem;padding:0.1rem;background-color:white;">
         <div style="padding:0.1rem;">
-            <i style="color: #09bb07;font-size:0.34rem;float:left;margin-top:0.03rem;" class="fas fa-tv"></i><div style="float:left;font-size:0.29rem;margin-left:0.1rem;">连续剧</div><i style="float:right;font-size:0.25rem;margin-top:0.07rem;" class="fas fa-chevron-right"></i><div style="float:right;font-size:0.23rem;margin-right:0.1rem;margin-top:0.04rem;">更多</div>
+            <i style="color: #09bb07;font-size:0.34rem;float:left;margin-top:0.03rem;" class="fas fa-tv"></i><div style="float:left;font-size:0.29rem;margin-left:0.1rem;">连续剧</div>
+            <!--<i style="float:right;font-size:0.25rem;margin-top:0.07rem;" class="fas fa-chevron-right"></i><div style="float:right;font-size:0.23rem;margin-right:0.1rem;margin-top:0.04rem;">更多</div>-->
             <div style="clear:both;"></div>
         </div>
-        <div>
-            <div style="padding:0.1rem;float:left;width:2.43rem;">
-                <a class="videopic lazy" href="#" title="一出好戏" style="position:relative;padding-top:150%;background: url(&quot;http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2529571873.jpg&quot;) 50% 50% / cover no-repeat; display: block;">
-                    <span class="score">HD1280高清中字首发</span>
-                </a>
-                <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
-                    爱到最后/相爱到最后
-                </div>
-            </div>
-            <div style="padding:0.1rem;float:left;width:2.43rem;">
-                <a class="videopic lazy" href="#" title="一出好戏" style="position:relative;padding-top:150%;background: url(http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2524173784.jpg) 50% 50% / cover no-repeat; display: block;">
-                    <span class="score">HD1280高清</span>
-                </a>
-                <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
-                    一出好戏
-                </div>
-            </div>
-            <div style="padding:0.1rem;float:left;width:2.43rem;">
-                <a class="videopic lazy" href="#" title="巨齿鲨" style="position:relative;padding-top:150%;background: url(http://img3.doubanio.com/view/photo/s_ratio_poster/public/p2530572643.jpg) 50% 50% / cover no-repeat; display: block;">
-                    <span class="score">HD1280高清</span>
-                </a>
-                <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
-                    巨齿鲨
-                </div>
-            </div>
-            <div style="padding:0.1rem;float:left;width:2.43rem;">
-                <a class="videopic lazy" href="#" title="超时空同居" style="position:relative;padding-top:150%;background: url(http://img1.doubanio.com/view/photo/s_ratio_poster/public/p2520331478.jpg) 50% 50% / cover no-repeat; display: block;">
-                    <span class="score">HD1280高清</span>
-                </a>
-                <div style="font-size:0.25rem;text-align:center;" class="text-overflow">
-                    超时空同居
-                </div>
-            </div>
-            <div style="clear:both;"></div>
+        <div id="dvTV">
         </div>
     </div>
+        </div>
     <script>
-        var swiper = new Swiper('.hy-slide', {
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            autoplay: 3000,
-            loop: true,
-            autoHeight:true
+        $(document).ready(function () {
+            $(".loading").show();
+            $.getJSON("https://www.iguazi.wang/inc/apiweixinindex.php?&callback=?", function (data) {
+                $(".loading").hide();
+                for (var i = 0; i < data.slide.length; i++) {
+                    var html = "<div class='swiper-slide'>"
+                    + "<div class='hy-video-slide'><a class='videopic' href='voddetail.html?id=" + data.slide[i].d_id + "' style='padding-top:60%; background: url(" + data.slide[i].d_picslide + ")  no-repeat; background-position:50% 50%; background-size: cover;'><span class='title'>" + data.slide[i].d_name + "</span></a></div>"
+                + "</div>";
+                    $(".swiper-wrapper").append(html);
+                }
+
+                for (var i = 0; i < data.movie.length; i++) {
+                    var html = "<div style='padding:0.1rem;float:left;width:2.43rem;'>"
+           + "<a class='videopic lazy' href='voddetail.html?id=" + data.movie[i].d_id + "' style='position:relative;padding-top:150%;background: url(" + data.movie[i].d_pic + ") 50% 50% / cover no-repeat; display: block;'>"
+           + "<span class='score'>" + data.movie[i].d_remarks + "</span></a>"
+           + "<div style='font-size:0.25rem;text-align:center;' class='text-overflow'>"
+               + data.movie[i].d_name + "</div></div>";
+                    $("#dvMovie").append(html);
+                }
+                $("#dvMovie").append("<div style='clear:both;'></div>");
+                
+                for (var i = 0; i < data.tv.length; i++) {
+                    var html = "<div style='padding:0.1rem;float:left;width:2.43rem;'>"
+           + "<a class='videopic lazy' href='voddetail.html?id=" + data.tv[i].d_id + "' style='position:relative;padding-top:150%;background: url(" + data.tv[i].d_pic + ") 50% 50% / cover no-repeat; display: block;'>"
+           + "<span class='score'>" + data.tv[i].d_remarks + "</span></a>"
+           + "<div style='font-size:0.25rem;text-align:center;' class='text-overflow'>"
+               + data.tv[i].d_name + "</div></div>";
+                    $("#dvTV").append(html);
+                }
+                $("#dvTV").append("<div style='clear:both;'></div>");
+
+                $("#dvcontent").show();
+                var swiper = new Swiper('.hy-slide', {
+                    pagination: '.swiper-pagination',
+                    paginationClickable: true,
+                    autoplay: 3000,
+                    loop: true,
+                    autoHeight: true
+                });
+            });
         });
+        function Search() {
+            var wd = $.trim($("#txtSearch").val());
+            if (wd == "") {
+                alert("请输入搜索词");
+                return;
+            }
+            window.location.href = "vodsearch.html?wd=" + encodeURIComponent(wd);
+        }
     </script>
 </body>
 </html>
