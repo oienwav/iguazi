@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />
@@ -66,7 +66,6 @@
             height: 0.4rem;
             background: lightgreen;
         }
-
         50% {
             height: 0.7rem;
             margin: -0.15rem 0;
@@ -85,25 +84,76 @@
     .loading span:nth-child(5) {
         -webkit-animation-delay: 0.8s;
     }
+    .dropload-up,.dropload-down{
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    font-size: 12px;
+    -webkit-transform:translateZ(0);
+    transform:translateZ(0);
+}
+.dropload-down{
+    height: 50px;
+}
+.dropload-refresh,.dropload-update,.dropload-load,.dropload-noData{
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.dropload-load .loading{
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    border-radius: 100%;
+    margin: 6px;
+    border: 2px solid #666;
+    border-bottom-color: transparent;
+    vertical-align: middle;
+    -webkit-animation: rotate 0.75s linear infinite;
+    animation: rotate 0.75s linear infinite;
+}
+@-webkit-keyframes rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
     </style>
     <script src='https://libs.cdnjs.net/jquery/3.2.0/jquery.min.js'></script>
+    <script src='https://iguazi.wang/js/dropload.min.js'></script>
     <script>
-    (function (n, e) {
-    var t = n.documentElement, i = "orientationchange" in window ? "orientationchange" : "resize", d = function () {
-    var n = t.clientWidth;
-    n && (t.style.fontSize = n / 7.5 + "px")
-    };
-    n.addEventListener && (e.addEventListener(i, d, !1), n.addEventListener("DOMContentLoaded", d, !1))
-    })(document, window);
+        (function (n, e) {
+            var t = n.documentElement, i = "orientationchange" in window ? "orientationchange" : "resize", d = function () {
+                var n = t.clientWidth;
+                n && (t.style.fontSize = n / 7.5 + "px")
+            };
+            n.addEventListener && (e.addEventListener(i, d, !1), n.addEventListener("DOMContentLoaded", d, !1))
+        })(document, window);
     </script>
     <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?01877afb417c7eebfd2e3e3fd94611f9";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?01877afb417c7eebfd2e3e3fd94611f9";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
 </script>
 </head>
 <body style="color:#666;margin:0 auto;background:#f2f2f2;font-weight:300;font-size:0;">
@@ -116,8 +166,10 @@ var _hmt = _hmt || [];
             </a>
         </div>
     </div>
+    <div class="content">
     <div id="list">
     </div>
+        </div>
     <div class="loading">
         <span></span>
         <span></span>
@@ -152,6 +204,8 @@ var _hmt = _hmt || [];
                     alert("请输入搜索词");
                     return;
                 }
+                tp = "";
+                $(".dropload-down").hide();
                 $("#list").html("");
                 GetData();
             }
@@ -178,12 +232,58 @@ var _hmt = _hmt || [];
                 if (r != null) return decodeURIComponent(r[2]);
                 return "";
             }
-            var wd = $.trim(getQueryString("wd"));
-            if (wd != "")
-            {
-                $("#txtSearch").val(wd);
-                Search();
+            var tp = $.trim(getQueryString("tp"));
+            if (tp == "") {
+                var wd = $.trim(getQueryString("wd"));
+                if (wd != "") {
+                    $("#txtSearch").val(wd);
+                    Search();
+                }
+            } else {
+                //上拉加载更多
+                $(function () {
+                    var page = -1;
+                    $('.content').dropload({
+                        scrollArea: window,
+                        loadDownFn: function (me) {
+                            if (tp=="")
+                            {
+                                me.lock();
+                                // 无数据
+                                me.noData();
+                                return;
+                            }
+                            page++;
+                            var result = '';
+                            $.getJSON("https://www.iguazi.wang/inc/apiweixinlist.php?tp=tv&pg=" + page + "&callback=?", function (data) {
+                                if (data.length > 0) {
+                                    var tp = $("#tmp").html();
+                                    for (var i = 0; i < data.length; i++) {
+                                        var tmp = tp.replace(/{{d_name}}/g, data[i].d_name);
+                                        tmp = tmp.replace(/{{d_id}}/g, data[i].d_id);
+                                        tmp = tmp.replace(/{{d_pic}}/g, data[i].d_pic);
+                                        tmp = tmp.replace(/{{d_score}}/g, data[i].d_score);
+                                        tmp = tmp.replace(/{{d_score_p}}/g, data[i].d_score * 10);
+                                        tmp = tmp.replace(/{{d_starring}}/g, data[i].d_starring);
+                                        tmp = tmp.replace(/{{d_directed}}/g, data[i].d_directed);
+                                        result += tmp;
+                                    }
+                                }
+                                else {
+                                    // 锁定
+                                    me.lock();
+                                    // 无数据
+                                    me.noData();
+                                }
+                                $("#list").append(result);
+                                me.resetload();
+                            });
+                        }
+                    });
+                });
             }
+            
+
         </script>
 </body>
 </html>
