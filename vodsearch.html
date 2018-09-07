@@ -255,7 +255,7 @@
                             }
                             page++;
                             var result = '';
-                            $.getJSON("https://www.iguazi.wang/inc/apiweixinlist.php?tp=tv&pg=" + page + "&callback=?", function (data) {
+                            $.getJSON("https://www.iguazi.wang/inc/apiweixinlist.php?tp="+tp+"&pg=" + page + "&callback=?", function (data) {
                                 if (data.length > 0) {
                                     var tp = $("#tmp").html();
                                     for (var i = 0; i < data.length; i++) {
